@@ -37,30 +37,12 @@ words = [
     "twist"
     ]
 
-# GregS, New stuff - make a list of hard words
-# Words taken from https://www.prdaily.com/Main/Articles/20880.aspx
-hardwords = "Awkward Bagpipes  Banjo  Bungler  Croquet  Crypt  Dwarves  Fervid  Fishhook  Fjord  Gazebo  Gypsy  Haiku  Haphazard  Hyphen  Ivory  Jazzy  Jiffy  Jinx  Jukebox  Kayak  Kiosk  Klutz  Memento  Mystify  Numbskull  Ostracize  Oxygen  Pajama  Phlegm  Pixel  Polka  Quad  Quip  Rhythmic  Rogue  Sphinx  Squawk  Swivel  Toady  Twelfth Unzip Waxy Wildebeest Yacht Zealous Zigzag Zippy Zombie "
-
-hardwords_list = hardwords.split(" ")
-# print (hardwords_list)
-
-# Comment out the line below to use the original easy word list.
-words = hardwords_list
-# GregS, New stuff
-
-
 #
 # Functions
 #
 
-########
-# draw_hangman
-#
-# Inputs: number of wrong guesses, num__wrong_guesses
-# Outputs: prints the gallows and the body parts for all incorrect guesses
-#
 def draw_hangman(num_wrong_guesses):
-    r"""This function draws the gallows and the body parts for each wrong guess.
+    """This function draws the gallows and the body parts for each wrong guess.
 
     Parameters
     ----------
@@ -102,19 +84,9 @@ def draw_hangman(num_wrong_guesses):
         output = output + "\n |"
     output = output + "____\n\n"
     print(output)
-# draw_hangman
 
-
-########
-# check_if_done
-# Inputs:
-#     the secret word, word
-#     list of letter guesses, guesses
-# Outputs:
-#     returns boolean value True or FaLse
-#
 def check_if_done(word, guesses):
-    r"""This function iterates through the characters in the word.
+    """This function iterates through the characters in the word.
     If any character in the word has not been guessed, it returns False.
     If every character in the word has been guessed, it returns True.
     """
@@ -123,17 +95,9 @@ def check_if_done(word, guesses):
         if not character in guesses:
             return False
     return True
-# check_if_done
 
-
-########
-# print_guesses
-# Inputs: the secret word, word
-#          list of letter guesses, guesses
-# Outputs: prints output string with matching letters that were guessed and _s for letters not guessed
-#
-def print_guesses(word, guesses):
-    r"""This function prints output string with matching letters that were guessed and _s for letters not guessed."""
+def display_guesses(word, guesses):
+    """This function prints output string with matching letters that were guessed and _s for letters not guessed."""
     output_string = ""
     for char in word:
         if char in guesses:
@@ -141,12 +105,11 @@ def print_guesses(word, guesses):
         else:
             output_string = output_string + "_ "
     print(output_string)
-# print_guesses
-
 
 #
 # Code execution starts here
 #
+
 # Get the player's name and print greeting.
 name = input("What is your name? ")
 print("Hello, " + name + "! Time to play hangman!")
@@ -158,12 +121,12 @@ word = words[random.randint(0, len(words) - 1)]
 wrong_guesses = 0
 guesses = []
 done = False
-#
+
 # Main loop which continues until the word is guessed or there are no more body parts left to draw on the hangman
 while wrong_guesses < num_wrong_guesses_allowed and not done:
     draw_hangman(wrong_guesses)
 
-    print_guesses(word, guesses)
+    display_guesses(word, guesses)
 
     # GregS, New stuff - we can process the input better by only looking at the lower case first letter of the input.
     guess = input("What is your guess? ")
@@ -187,10 +150,11 @@ while wrong_guesses < num_wrong_guesses_allowed and not done:
 
 # Check for a win or a loss now.
 if wrong_guesses == num_wrong_guesses_allowed:
+    draw_hangman(wrong_guesses)
     print("Sorry, you lost!") 
     print ("The word was: ",word) # GregS, New stuff - print the word at the end of a losing game.
 else:
-    print_guesses(word, guesses) # Print the word and list of letters guessed.
+    display_guesses(word, guesses) # Print the word and list of letters guessed.
     print("You won!") 
 
 # end

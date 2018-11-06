@@ -1,6 +1,7 @@
 #
 # Code2College HANGMAN Game
-#
+# Search through this file for where it says FIXME.
+# Read the comments that go along with the FIXME text and change the code to make it work.
 
 #
 # Definitions (imports, lists, tuples, constants and global variables, etc.)
@@ -38,11 +39,8 @@ words = [
 # Functions
 #
 
-########
-# draw_hangman
-#
 def draw_hangman(num_wrong_guesses):
-    r"""This function draws the gallows and the body parts for each wrong guess."""
+    """This function draws the gallows and the body parts for each wrong guess."""
 
     if num_wrong_guesses > num_wrong_guesses_allowed:
         num_wrong_guesses = num_wrong_guesses_allowed
@@ -68,14 +66,9 @@ def draw_hangman(num_wrong_guesses):
         output = output + "\n |"
     output = output + "____\n\n"
     print(output)
-# draw_hangman
 
-
-########
-# check_if_done
-#
 def check_if_done(word, guesses):
-    r"""This function iterates through the characters in the word.
+    """This function iterates through the characters in the word.
     If any character in the word has not been guessed, it returns False.
     If every character in the word has been guessed, it returns True.
     """
@@ -84,14 +77,9 @@ def check_if_done(word, guesses):
 #              if not character in guesses:
 #                  return False # not done if we find a chaacter that hasn't been guessed.
 # FIXME    return *WHAT GOES HERE*  # This line is outside the for loop...
-# check_if_done
 
-
-########
-# print_guesses
-#
-def print_guesses(word, guesses):
-    r"""This function prints output string with matching letters that were guessed and _s for letters not guessed."""
+def display_guesses(word, guesses):
+    """This function prints output string with matching letters that were guessed and _s for letters not guessed."""
     output_string = ""
     for char in word:
         if char in guesses:
@@ -99,12 +87,11 @@ def print_guesses(word, guesses):
         else:
             output_string = output_string # + *WHAT_GOES_HERE* # FIXME: Need to add the special character for an unguessed letter AND a space.
     print(output_string)
-# print_guesses
-
 
 #
 # Code execution starts here
 #
+
 # Get the player's name and print greeting.
 name = input("What is your name? ")
 print("Hello, " + name + "! Time to play hangman!")
@@ -116,12 +103,12 @@ word = words[random.randint(0, len(words) - 1)]
 wrong_guesses = 0
 guesses = []
 done = False
-#
+
 # Main loop which continues until the word is guessed or there are no more body parts left to draw on the hangman
 while wrong_guesses < num_wrong_guesses_allowed: # FIXME: need to modify this loop to exit if the word has been guessed
     draw_hangman(wrong_guesses)
 
-    print_guesses(word, guesses)
+    display_guesses(word, guesses)
 
     guess = input("What is your guess? ")
 
@@ -141,9 +128,10 @@ while wrong_guesses < num_wrong_guesses_allowed: # FIXME: need to modify this lo
 
 # Check for a win or a loss now.
 if wrong_guesses == num_wrong_guesses_allowed:
+    draw_hangman(wrong_guesses)
     print("Sorry, you lost!")
 else:
-    print_guesses(word, guesses) # Print the word and list of letters guessed.
+    display_guesses(word, guesses) # Print the word and list of letters guessed.
     print("You won!")
 
 # end
