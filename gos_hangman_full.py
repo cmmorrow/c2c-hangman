@@ -96,7 +96,7 @@ def check_if_done(word, guesses):
             return False
     return True
 
-def display_guesses(word, guesses):
+def print_guesses(word, guesses):
     """This function prints output string with matching letters that were guessed and _s for letters not guessed."""
     output_string = ""
     for char in word:
@@ -126,7 +126,7 @@ done = False
 while wrong_guesses < num_wrong_guesses_allowed and not done:
     draw_hangman(wrong_guesses)
 
-    display_guesses(word, guesses)
+    print_guesses(word, guesses)
 
     # GregS, New stuff - we can process the input better by only looking at the lower case first letter of the input.
     guess = input("What is your guess? ")
@@ -154,7 +154,7 @@ if wrong_guesses == num_wrong_guesses_allowed:
     print("Sorry, you lost!") 
     print ("The word was: ",word) # GregS, New stuff - print the word at the end of a losing game.
 else:
-    display_guesses(word, guesses) # Print the word and list of letters guessed.
+    print_guesses(word, guesses) # Print the word and list of letters guessed.
     print("You won!") 
 
 # end

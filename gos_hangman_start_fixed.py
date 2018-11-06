@@ -77,7 +77,7 @@ def check_if_done(word, guesses):
             return False # not done if we find a chaacter that hasn't been guessed.
     return True  # This line is outside the for loop...
 
-def display_guesses(word, guesses):
+def print_guesses(word, guesses):
     r"""This function prints output string with matching letters that were guessed and _s for letters not guessed."""
     output_string = ""
     for char in word:
@@ -107,7 +107,7 @@ done = False
 while wrong_guesses < num_wrong_guesses_allowed and not done:
     draw_hangman(wrong_guesses)
 
-    display_guesses(word, guesses)
+    print_guesses(word, guesses)
 
     guess = input("What is your guess? ")
 
@@ -130,7 +130,7 @@ if wrong_guesses == num_wrong_guesses_allowed:
     draw_hangman(wrong_guesses)
     print("Sorry, you lost!") 
 else:
-    display_guesses(word, guesses) # Print the word and list of letters guessed.
+    print_guesses(word, guesses) # Print the word and list of letters guessed.
     print("You won!") 
 
 # end
